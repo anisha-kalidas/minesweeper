@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Fredericka the Great', sans-serif;
 }
 
 body {
@@ -8,6 +8,12 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
+}
+
+p {
+  font-family: 'Fredericka the Great', sans-serif;
+  font-size: 40px;
+  color: #868686fc;
 }
 
 #message, #notes {
@@ -26,7 +32,7 @@ body {
 }
 
 .board div {
-  color: green;
+  color: #dcb43a;
   font-size: 2rem;
   width: 75px;
   height: 75px;
@@ -44,7 +50,7 @@ body {
 }
 
 div.mine, div.mine:hover {
-  background: no-repeat center/60% url("images/bomb.svg") crimson;
+  background: no-repeat center/95% url("images/pikachu.png") #ffffff
 }
 
 div.hidden {
@@ -56,5 +62,21 @@ div.hidden:hover {
 }
 
 div.marked, div.marked:hover {
-  background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+  background: no-repeat center/99% url("images/pokeball.png")#dbdbdb;
+}
+
+button {
+  margin-top: 50px;
+  line-height: 30px;
+  padding-left: 100px;
+  padding-right: 100px;
+  font-family: 'Fredericka the Great', sans-serif;
+  font-size: 25px;
+  color: #868686fc;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ddc53e87;
 }
