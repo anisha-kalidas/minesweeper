@@ -16,6 +16,11 @@ p {
   color: #868686fc;
 }
 
+span {
+  font-size: 20px;
+  color: #ddc53ef7;
+}
+
 #message, #notes {
   display: flex;
   flex-direction: column;

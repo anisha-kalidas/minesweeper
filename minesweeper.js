@@ -51,13 +51,16 @@ function startGame () {
 };
 
 
-
+function displayNumber (msg, id) {
+  document.getElementById(id || 'subtext').innerHTML = '<span>' + msg + '</span>'
+}
 
 function createBoard() {
-  
-  var mines = 6;
+  var mines = Math.ceil(Math.random() * 5) + 1;
   var minesPlaced = 0;
   var randomCell = Math.floor(Math.random() * board.cells.length);
+
+  displayNumber('POKEMON HIDING: ' + mines);
 
   while (minesPlaced < mines) {
 
@@ -71,12 +74,7 @@ function createBoard() {
 }
 
 
-
-
-
-
 function checkForWin () {
-
   var winning = 0;
   var winningSound = new Audio('audio/chimes.wav');
 
@@ -91,15 +89,15 @@ function checkForWin () {
         winning++;
       }
     };
+  }
 
-    if (winning === board.cells.length) {
-      winningSound.play();
-      lib.displayMessage('YOU WIN!');
+  if (winning === board.cells.length) {
+    winningSound.play();
+    lib.displayMessage('YOU WIN!');
+    lib.removeListeners();
+    return;
     };
-  };
-
 };
-     
 
 
 function countSurroundingMines(cell) {
