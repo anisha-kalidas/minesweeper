@@ -1,49 +1,26 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 var board = {
-  cells: [
-    {row: 1,  col: 1, isMine: false,  isMarked: false, hidden: true}, 
-    {row: 1,  col: 2, isMine: false,  isMarked: false, hidden: true},
-    {row: 1,  col: 3, isMine: false,  isMarked: false, hidden: true},
-    {row: 1,  col: 4, isMine: false,  isMarked: false, hidden: true},
-    {row: 1,  col: 5, isMine: false,  isMarked: false, hidden: true},
-    {row: 2,  col: 1, isMine: false,  isMarked: false, hidden: true},
-    {row: 2,  col: 2, isMine: false,  isMarked: false, hidden: true},
-    {row: 2,  col: 3, isMine: false,  isMarked: false, hidden: true},
-    {row: 2,  col: 4, isMine: false,  isMarked: false, hidden: true},
-    {row: 2,  col: 5, isMine: false,  isMarked: false, hidden: true}, 
-    {row: 3,  col: 1, isMine: false,  isMarked: false, hidden: true},
-    {row: 3,  col: 2, isMine: false,  isMarked: false, hidden: true},
-    {row: 3,  col: 3, isMine: false,  isMarked: false, hidden: true},
-    {row: 3,  col: 4, isMine: false,  isMarked: false, hidden: true},
-    {row: 3,  col: 5, isMine: false,  isMarked: false, hidden: true},
-    {row: 4,  col: 1, isMine: false,  isMarked: false, hidden: true},
-    {row: 4,  col: 2, isMine: false,  isMarked: false, hidden: true},
-    {row: 4,  col: 3, isMine: false,  isMarked: false, hidden: true},
-    {row: 4,  col: 4, isMine: false,  isMarked: false, hidden: true},
-    {row: 4,  col: 5, isMine: false,  isMarked: false, hidden: true},
-    {row: 5,  col: 1, isMine: false,  isMarked: false, hidden: true},
-    {row: 5,  col: 2, isMine: false,  isMarked: false, hidden: true},
-    {row: 5,  col: 3, isMine: false,  isMarked: false, hidden: true},
-    {row: 5,  col: 4, isMine: false,  isMarked: false, hidden: true},
-    {row: 5,  col: 5, isMine: false,  isMarked: false, hidden: true}
-  ]
+  cells: []
 };
 
 
+function createBoard(size) {
+  for (var i = 0; i < size; i++) {
+    for (var j = 0; j < size; j++) {
+      board.cells.push({row: i, col: j, hidden: true, isMarked: false, isMine: false})
+    }
+  }
+};
 
 function startGame () {
-
-  createBoard();
-
-  mines = 0;
-  remaining = mines;
-  revealed = 0;
+  createBoard(5);
+  placeMines();
 
   document.addEventListener("click", checkForWin);
   document.addEventListener("contextmenu", checkForWin);
 
-  for (i = 0; i < board.cells.length; i++) {
+  for (var i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
   };
   // Don't remove this function call: it makes the game work!
@@ -55,7 +32,8 @@ function displayNumber (msg, id) {
   document.getElementById(id || 'subtext').innerHTML = '<span>' + msg + '</span>'
 }
 
-function createBoard() {
+
+function placeMines() {
   var mines = Math.ceil(Math.random() * 5) + 1;
   var minesPlaced = 0;
   var randomCell = Math.floor(Math.random() * board.cells.length);
